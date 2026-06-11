@@ -132,7 +132,3 @@ To support billing, I would use `request_id` as an idempotency key for every bil
 ## Design Question 2: How would you store this data if scale increases to 100K agents?
 
 If the system grows to 100K agents, I would move from in-memory storage to a database. Agents could be stored in an `agents` table, while usage records could be stored in a separate `usage_logs` table. I would add indexes on fields like agent name, description, and request ID to make search and duplicate checks faster. For better search, I would later use full-text search instead of simple string matching. Frequently used results could also be cached to reduce database load.
-
-## Notes
-
-This project is intentionally kept simple to focus on core system thinking: agent registration, search, usage tracking, idempotency, and basic edge case handling.
